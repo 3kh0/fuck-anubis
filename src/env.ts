@@ -1,0 +1,1 @@
+export const IS_FIREFOX = globalThis.navigator.userAgent.includes('Firefox')

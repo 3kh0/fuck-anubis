@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+
+jobs:
+  submit:
+    runs-on: node22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: https://github.com/pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Zip extensions
+        run: |
+          pnpm zip
+          pnpm zip:firefox
+          rm -rf .output/chrome-*
+          rm -rf .output/firefox-*
+
+      - name: Generate release
+        uses: actions/forgejo-release@v2.6.0
+        with:
+          direction: upload
+          token: ${{ secrets.UPLOAD_PAT }}
+          release-dir: .output

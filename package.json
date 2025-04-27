@@ -1,0 +1,24 @@
+{
+  "name": "fuck-anubis",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "description": "fuck anubis lol",
+  "scripts": {
+    "dev": "DEV=1 wxt",
+    "dev:firefox": "DEV=1 wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox --mv3",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox --mv3",
+    "compile": "tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.12.0",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "wxt": "^0.20.0"
+  }
+}
